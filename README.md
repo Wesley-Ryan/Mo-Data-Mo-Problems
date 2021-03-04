@@ -31,11 +31,11 @@ I started to get my footing in the codebase, it was a large Express app with a f
 
 - How the data would flow from the DS API to the Web API
 
-  ![DS FLOW](/Users/wesleyryan/Downloads/DS FLOW.jpg)
+  <img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/DS%20FLOW.jpg" alt="dsflow" style="zoom:50%;" />
 
 - How the data will flow throughout the Web App.
 
-<img src="/Users/wesleyryan/Downloads/webAppflow.jpg" alt="webAppflow" style="zoom:50%;" />
+<img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/webAppflow.jpg" alt="webAppflow" style="zoom:50%;" />
 
 ### Let's Dive In
 
@@ -43,23 +43,28 @@ Since the app was currently in production my first step was to deploy a developm
 
 **What is Knex?** Knex.js is a "batteries included" SQL query builder for Postgres, MySQL, MariaDB, SQLite3, and Oracle designed to be flexible, portable, fun and easy to use. I started by implementing the tables for the new data source and eventually the user profiles for the admin account.
 
-![Screen Shot 2021-03-03 at 7.48.22 PM](/Users/wesleyryan/Desktop/Screen Shot 2021-03-03 at 7.48.22 PM.png)
-
+<img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/createTables.png" alt="migration" style="zoom:50%;" />
 **_On to the seeds..._**
 
 Now that I have a table set up, I wanted to put some data into it. So I made an array of objects that match the structure of the migration created above.
 
-![Screen Shot 2021-03-03 at 7.51.18 PM](/Users/wesleyryan/Desktop/Screen Shot 2021-03-03 at 7.51.18 PM.png)
+<img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/seed2.png" alt="seeds" style="zoom:50%;" />
 
-A few npm one liners and my Postgres database was up and running with fake data, for now. My next step was to start building the model for the new Twitter incidents. ![Screen Shot 2021-03-03 at 7.53.03 PM](/Users/wesleyryan/Desktop/Screen Shot 2021-03-03 at 7.53.03 PM.png)
+A few npm one liners and my Postgres database was up and running with fake data, for now. My next step was to start building the model for the new Twitter incidents.
+
+<img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/model.png" alt="model" style="zoom:50%;" />
 
 getLastID turned out to be my faviorte, I had no idea at the time but this little guy here would be directly responible for POST success and nightly updates.
 
 ### Routes for Every Occasion
 
-The basic purpose of my API was to get data from two outside sources, restructure and store the data, and finally serve it up to the frontend. To say the least basic CRUD functions were needed…. ![Screen Shot 2021-03-03 at 7.55.52 PM](/Users/wesleyryan/Desktop/Screen Shot 2021-03-03 at 7.55.52 PM.png)
+The basic purpose of my API was to get data from two outside sources, restructure and store the data, and finally serve it up to the frontend. To say the least basic CRUD functions were needed…
 
-Remember that little guy we can always call upon to give us the last known ID in our database? Well he sure came in handy when writing our POST endpoint. Since we were not creating a new unique ID we had to find a way to be able to assign an ID when an incident was created from the admin dashboard. To resolve this issue I wrote a piece of middleware that will find the lastknown id in the database, increase it by 1 and attach it to the object the admin was POSTING from the dashboard. ![Screen Shot 2021-03-03 at 7.57.09 PM](/Users/wesleyryan/Desktop/Screen Shot 2021-03-03 at 7.57.09 PM.png)
+<img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/routes.png" alt="routes" style="zoom:50%;" />
+
+Remember that little guy we can always call upon to give us the last known ID in our database? Well he sure came in handy when writing our POST endpoint. Since we were not creating a new unique ID we had to find a way to be able to assign an ID when an incident was created from the admin dashboard. To resolve this issue I wrote a piece of middleware that will find the lastknown id in the database, increase it by 1 and attach it to the object the admin was POSTING from the dashboard.
+
+<img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/addIDtoPost.png" alt="addID" style="zoom:50%;" />
 
 Now the api was up and running, deployed on our testing environment with seeded data I felt pretty good. Time for our stakeholder meeting….
 
@@ -81,7 +86,9 @@ After a quick chat with the Frontend team I was able to pull apart the data and 
 
 ### Node-Cron
 
-What is it? Well the node-cron module is tiny task scheduler in pure JavaScript for node.js Sounds perfectly spledned for my use case, quick dive into the docs and simple enough a cron job is born. ![Screen Shot 2021-03-03 at 8.04.46 PM](/Users/wesleyryan/Desktop/Screen Shot 2021-03-03 at 8.04.46 PM.png)
+What is it? Well the node-cron module is tiny task scheduler in pure JavaScript for node.js Sounds perfectly spledned for my use case, quick dive into the docs and simple enough a cron job is born. ![Screen Shot 2021-03-03 at 8.04.46 PM]
+
+<img width='100%' style="width:100%" src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/cron.png">
 
 In the function above we are scheduling two tasks to be ran at the 23rd hour of every day. I evenetually removed the console logs, before and loads of testing was done to ensure the app wouldn't crash loading 200 to 500 at one point I think it was up to 3000 incidents loaded over night. At this point we had a fully functional API, a groovin PG database, Authentication was done(I know I didn't touchbase on this but really I need something to write about next time) and nightly updates to offically meet our MVP.
 
