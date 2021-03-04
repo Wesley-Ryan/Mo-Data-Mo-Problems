@@ -9,7 +9,7 @@ Human Rights First is an independent advocacy and action organization that chall
 
 ### The Idea
 
-**Now that we're all caught up, let's jump in: **
+**Now that we're all caught up, let's jump in:**
 
 The project was scheduled to last for 4 weeks with the main objective of adding an Administration dashboard, Authentication and a new data source. With a team of frontend engineers, data scientists and _moi_ heading up the backend we headed out into the wild with the hopes of pulling relevant data from Twitter, running it through an MPL model and delivering it to our new fancy Admin dashboard.
 
@@ -44,7 +44,8 @@ Since the app was currently in production my first step was to deploy a developm
 **What is Knex?** Knex.js is a "batteries included" SQL query builder for Postgres, MySQL, MariaDB, SQLite3, and Oracle designed to be flexible, portable, fun and easy to use. I started by implementing the tables for the new data source and eventually the user profiles for the admin account.
 
 <img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/createTables.png" alt="migration" style="zoom:50%;" />
-**_On to the seeds..._**
+
+**On to the seeds**
 
 Now that I have a table set up, I wanted to put some data into it. So I made an array of objects that match the structure of the migration created above.
 
@@ -66,27 +67,27 @@ Remember that little guy we can always call upon to give us the last known ID in
 
 <img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/addIDtoPost.png" alt="addID" style="zoom:50%;" />
 
-Now the api was up and running, deployed on our testing environment with seeded data I felt pretty good. Time for our stakeholder meeting….
+Now the api was up and running, deployed on our testing environment with seeded data I felt pretty good. Time for our stakeholder meeting…
 
-### 99 problems and Data turned out to be all of them…..
+### 99 problems and Data turned out to be all of them…
 
 At our stakeholder meeting it was brought to attention by one of the data science engineers the model used to categorize the data of the current incidents in production was “immature”,we could say. We might have also said all of the current data was miscatorgized and meaningless, but let’s stick with immature. After a few umms and awws… a little coffee and some more discussion the solution was to run the production data through the new model. We would Recategorize all the data according to this model, update the data disclaimers and thus the project would move forward.
 
-<img width='100%' style="width:100%" src="https://media.giphy.com/media/RLzALvP9EmWQkroLfl/giphy.gif ">
+<img width='100%' style="width:100%" src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/Fine.gif ">
 
 ### Back to the drawing board
 
 I restructured the database to accommodate the new categorized, nuked and rebuilt and was up and running with the new recategorized incidents. At last the data was flowing, the API was stable and I was about to pat myself on the back with a job well done. The next morning the new datasource API was ready and I was excited to start pulling real data into my API, I made a test call using Insomnia and…
 
-Wait… What’s this?? The schema is nothing like I was told, this shape is not going to fit into my database :(. Let me reach out to the team to clarify the shape of the object.
+Wait… What’s this?? The schema is nothing like I was told, this shape is not going to fit into my database. Let me reach out to the team to clarify the shape of the object.
 
-<img width='100%' style="width:100%" src="https://media.giphy.com/media/GDqDZOPSZJC00/giphy.gif">
+<img width='100%' style="width:100%" src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/what.gif">
 
 After a quick chat with the Frontend team I was able to pull apart the data and restructure the object to meet the requirements of an incident. Finally our API was up, running with Correct data and yet there was still something missing. Oh yeah updates… We should probably try to pull data in every once in awhile right?
 
 ### Node-Cron
 
-What is it? Well the node-cron module is tiny task scheduler in pure JavaScript for node.js Sounds perfectly spledned for my use case, quick dive into the docs and simple enough a cron job is born. ![Screen Shot 2021-03-03 at 8.04.46 PM]
+What is it? Well the node-cron module is tiny task scheduler in pure JavaScript for node.js Sounds perfectly spledned for my use case, quick dive into the docs and simple enough a cron job is born.
 
 <img width='100%' style="width:100%" src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/cron.png">
 
