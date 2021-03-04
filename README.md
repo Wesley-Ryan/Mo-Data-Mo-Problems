@@ -8,7 +8,7 @@ Recently I was honored to be offered the chance to work on Blue Witness. A super
 
 **Now that we're all caught up, let's jump in:**
 
-The project was scheduled to last for 4 weeks with the main objective of adding an Administration dashboard, Authentication and a new data source. With a team of frontend engineers, data scientists and _moi_ heading up the backend we headed out into the wild with the hopes of pulling relevant data from Twitter, running it through an MPL model and delivering it to our new fancy Admin dashboard.
+The project was scheduled to last 4 weeks with the main objective of adding an Administration dashboard, Authentication and a new data source. With a team of frontend engineers, data scientists and _moi_ heading up the backend we headed out into the wild with the hopes of pulling relevant data from Twitter, running it through an MPL model and delivering it to our new fancy Admin dashboard.
 
 ### The Process
 
@@ -52,7 +52,7 @@ A few npm one liners and my Postgres database was up and running with fake data,
 
 <img src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/model.png" alt="model" style="zoom:50%;" />
 
-getLastID turned out to be my faviorte, I had no idea at the time but this little guy here would be directly responible for POST success and nightly updates.
+getLastID turned out to be my favorite, I had no idea at the time but this little guy here would be directly responsible for POST success and nightly updates.
 
 ### Routes for Every Occasion
 
@@ -68,7 +68,7 @@ Now the api was up and running, deployed on our testing environment with seeded 
 
 ### 99 problems and Data turned out to be all of them…
 
-At our stakeholder meeting it was brought to attention by one of the data science engineers the model used to categorize the data of the current incidents in production was “immature”,we could say. We might have also said all of the current data was miscatorgized and meaningless, but let’s stick with immature. After a few umms and awws… a little coffee and some more discussion the solution was to run the production data through the new model. We would Recategorize all the data according to this model, update the data disclaimers and thus the project would move forward.
+At our stakeholder meeting it was brought to attention by one of the data science engineers the model used to categorize the data of the current incidents in production was “immature”, we could say. We might have also said all of the current data was miscatorgized and meaningless, but let’s stick with immature. After a few umms and awws… a little coffee and some more discussion the solution was to run the production data through the new model. We would Recategorize all the data according to this model, update the data disclaimers and thus the project would move forward.
 
 <img width='100%' style="width:100%" src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/Fine.gif ">
 
@@ -84,11 +84,11 @@ After a quick chat with the Frontend team I was able to pull apart the data and 
 
 ### Node-Cron
 
-What is it? Well the node-cron module is tiny task scheduler in pure JavaScript for node.js Sounds perfectly spledned for my use case, quick dive into the docs and simple enough a cron job is born.
+What is it? Well the node-cron module is a tiny task scheduler in pure JavaScript for node.js Sounds perfectly splendid for my use case, quick dive into the docs and simple enough a cron job is born.
 
 <img width='100%' style="width:100%" src="https://github.com/Wesley-Ryan/Mo-Data-Mo-Problems/blob/new/assets/cron.png">
 
-In the function above we are scheduling two tasks to be ran at the 23rd hour of every day. I evenetually removed the console logs, before and loads of testing was done to ensure the app wouldn't crash loading 200 to 500 at one point I think it was up to 3000 incidents loaded over night. At this point we had a fully functional API, a groovin PG database, Authentication was done(I know I didn't touchbase on this but really I need something to write about next time) and nightly updates to offically meet our MVP.
+In the function above we are scheduling two tasks to be ran at the 23rd hour of every day. I eventually removed the console logs, before and loads of testing was done to ensure the app wouldn't crash loading 200 to 500 at one point I think it was up to 3000 incidents loaded over night. At this point we had a fully functional API, a groovin PG database, Authentication was done (I know I didn't touchbase on this but really I need something to write about next time) and nightly updates to offically meet our MVP.
 
 ### Closing Statements
 
